@@ -12,9 +12,9 @@ async function hasBookingOpened(bookMyShowURL) {
    }));
 }
 
-async function poll(interval, URL) {
+async function poll(interval, bookMyShowURL) {
    try {
-      const result = await hasBookingOpened(URL);
+      const result = await hasBookingOpened(bookMyShowURL);
       console.log(result);
       if (result) {
          return;
@@ -22,7 +22,7 @@ async function poll(interval, URL) {
          await new Promise(resolve => {
             setTimeout(resolve, interval);
          });
-         await poll(interval, URL);
+         await poll(interval, bookMyShowURL);
       }
    } catch (error) {
       console.error(error);
